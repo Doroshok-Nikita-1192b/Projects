@@ -1,0 +1,58 @@
+﻿@model IEnumerable<TankiGGG.Models.U_Perk>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Unique Perk List</h2>
+        </div>
+        @if (User.IsInRole("admin") || User.IsInRole("moderator"))
+        {
+            <div class="col-6 text-right">
+                <a asp-controller="U_Perk" asp-action="Create" class="btn btn-primary">Create new Unique Perk</a>
+            </div>
+        }
+    </div>
+    <br />
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Unique Perk
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var uperk in Model)
+                {
+                <tr>
+                    <td width="35%">@uperk.PerkName</td>
+                    <td width="35%">@uperk.Description</td>
+                    @if(User.IsInRole("admin") || User.IsInRole("moderator"))
+                    {
+                    <td width="30%">
+                        <div class="w-100 btn-group" role="group">
+                            <a asp-controller="U_Perk" asp-action="Update" asp-route-Id="@uperk.Id" class="btn btn-primary mx-1">Update</a>
+                            <a asp-controller="U_Perk" asp-action="Delete" asp-route-Id="@uperk.Id" class="btn btn-danger mx-1">Delete</a>
+                        </div>
+                    </td>
+                    }
+                </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No Unique Perks created yet</p>
+    }
+
+</div>

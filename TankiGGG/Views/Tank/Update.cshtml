@@ -1,0 +1,83 @@
+﻿@model TankiGGG.Models.ViewModels.TankVM
+
+<form method="post" asp-action="Update">
+    <input asp-for="Tank.Id" hidden />
+    <div class="border p-3">
+
+        <div class="form-group row">
+            <h2 class="text-black-50 pl-3">Update Tank</h2>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Tank.Name"></label>
+                        <input asp-for="Tank.Name" class="form-control" />
+                        <span asp-validation-for="Tank.Name" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="Tank.Health"></label>
+                        <input asp-for="Tank.Health" class="form-control" />
+                        <span asp-validation-for="Tank.Health" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="Tank.Damage"></label>
+                        <input asp-for="Tank.Damage" class="form-control" />
+                        <span asp-validation-for="Tank.Damage" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="Tank.Penetration"></label>
+                        <input asp-for="Tank.Penetration" class="form-control" />
+                        <span asp-validation-for="Tank.Penetration" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="Tank.DPM"></label>
+                        <input asp-for="Tank.DPM" class="form-control" />
+                        <span asp-validation-for="Tank.DPM" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="Tank.ViewRange"></label>
+                        <input asp-for="Tank.ViewRange" class="form-control" />
+                        <span asp-validation-for="Tank.ViewRange" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="Tank.Cost"></label>
+                        <input asp-for="Tank.Cost" class="form-control" />
+                        <span asp-validation-for="Tank.Cost" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="Tank.Nation"></label>
+                        <select asp-for="Tank.Nation_id" asp-items="@Model.TDDNation" class="form-control">
+                            <option selected>Select Nation</option>
+                        </select>
+                        <span asp-validation-for="Tank.Nation_id" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="Tank.TankType"></label>
+                        <select asp-for="Tank.Tank_type_id" asp-items="@Model.TDDTank_type" class="form-control">
+                            <option selected>--Select Tank Types--</option>
+                        </select>
+                        <span asp-validation-for="Tank.Tank_type_id" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-8 offset-2 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-info w-75" value="create" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-danger w-75">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+

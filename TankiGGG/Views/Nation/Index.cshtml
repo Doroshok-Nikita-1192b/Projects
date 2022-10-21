@@ -1,0 +1,54 @@
+﻿@model IEnumerable<TankiGGG.Models.Nation>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Nation List</h2>
+        </div>
+        @if (User.IsInRole("admin") || User.IsInRole("moderator"))
+        {
+            <div class="col-6 text-right">
+                <a asp-controller="Nation" asp-action="Create" class="btn btn-primary">Create new Nation</a>
+            </div>
+        }
+    </div>
+    <br />
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Nation name
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var nation in Model)
+                {
+                    <tr>
+                        <td width="70%">@nation.Name</td>
+                        @if(User.IsInRole("admin") || User.IsInRole("moderator"))
+                        {
+                        <td width="30%">
+                            <div class="w-100 btn-group" role="group">
+                                <a asp-controller="Nation" asp-action="Update" asp-route-Id="@nation.Id" class="btn btn-primary mx-1">Update</a>
+                                <a asp-controller="Nation" asp-action="Delete" asp-route-Id="@nation.Id" class="btn btn-danger mx-1">Delete</a>
+                            </div>
+                        </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No Nations created yet</p>
+    }
+
+</div>
